@@ -4,3 +4,6 @@ from home import models
 
 # Register your models here.
 admin.site.register(models.Login)
+admin.site.register(models.doctor)
+admin.site.register(models.patient)
+admin.site.register(models.department)

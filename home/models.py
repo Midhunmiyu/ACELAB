@@ -13,6 +13,7 @@ class Login(AbstractUser):
 class doctor(models.Model):
     user = models.ForeignKey(Login, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
+    department = models.CharField(max_length=100)
     email = models.EmailField()
 
     def __str__(self):
@@ -27,3 +28,7 @@ class patient(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class department(models.Model):
+    dept_name = models.CharField(max_length=100)

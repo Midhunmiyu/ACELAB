@@ -14,17 +14,17 @@ class loginform(UserCreationForm):
         fields = ('username', 'password1', 'password2')
 
 
-class doctorlogin(UserCreationForm):
+class doctorlogin(forms.ModelForm):
 
     class Meta:
         model = doctor
         fields = '__all__'
-        exclude = ' user'
+        exclude = ('user',)
 
 
-class patientlogin(UserCreationForm):
+class patientlogin(forms.ModelForm):
 
     class Meta:
         model = patient
         fields = '__all__'
-        exclude = ' user'
+        exclude = (' user',)
