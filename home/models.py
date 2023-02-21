@@ -32,3 +32,7 @@ class patient(models.Model):
 
 class department(models.Model):
     dept_name = models.CharField(max_length=100)
+    dept_desc = models.TextField()
+
+    def __str__(self):
+        return self.dept_name

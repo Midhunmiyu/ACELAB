@@ -38,7 +38,7 @@ def patient_registration(request):
 
         if form1.is_valid() and form2.is_valid():
             obj = form1.save(commit=False)
-            obj.is_doctor = True
+            obj.is_patient = True
             obj.save()
             data = form2.save(commit=False)
             data.user = obj
@@ -48,8 +48,7 @@ def patient_registration(request):
     return render(request, 'patient/patient_registration.html', {'form1': form1, 'form2': form2})
 
 
-def signup(request):
-    return render(request, 'signup.html')
+
 
 
 def dashboard(request):
