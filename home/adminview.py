@@ -13,11 +13,17 @@ def add_department(request):
         form = departmentform(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('admindashboard')
+            return redirect('view_department')
     return render(request, 'admin1/adddepartments.html', {'form': form})
 
 
 def view_department(request):
     data = department.objects.all()
-    return render(request,'admin1/viewdepartments.html',{'data':data})
+    return render(request, 'admin1/viewdepartments.html', {'data': data})
 
+
+def delete(request, id):
+    data = department.objects.get(id=id)
+    data.delete()
+
+    return redirect('view_department')

@@ -10,10 +10,18 @@ class Login(AbstractUser):
     is_patient = models.BooleanField(default=False)
 
 
+class department(models.Model):
+    dept_name = models.CharField(max_length=100)
+    dept_desc = models.TextField()
+
+    def __str__(self):
+        return self.dept_name
+
+
 class doctor(models.Model):
     user = models.ForeignKey(Login, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    department = models.CharField(max_length=100)
+    department = models.ForeignKey(department, on_delete=models.DO_NOTHING)
     email = models.EmailField()
 
     def __str__(self):
@@ -28,11 +36,3 @@ class patient(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class department(models.Model):
-    dept_name = models.CharField(max_length=100)
-    dept_desc = models.TextField()
-
-    def __str__(self):
-        return self.dept_name
