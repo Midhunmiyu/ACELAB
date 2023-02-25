@@ -25,7 +25,7 @@ def doctor_registration(request):
             data = form2.save(commit=False)
             data.user = obj
             data.save()
-            return redirect('Login')
+            return redirect('login_view')
 
     return render(request, 'doctor/doctor_registration.html', {'form1': form1, 'form2': form2})
 
@@ -45,7 +45,7 @@ def patient_registration(request):
             data = form2.save(commit=False)
             data.user = obj
             data.save()
-            return redirect('Login')
+            return redirect('login_view')
 
     return render(request, 'patient/patient_registration.html', {'form1': form1, 'form2': form2})
 
@@ -58,15 +58,15 @@ def login_view(request):
         if user is not None:
             login(request, user)
             if user.is_staff:
-                return redirect('')
+                return redirect('admindashboard')
             elif user.is_doctor:
-                return redirect('')
+               return redirect('doctordashboard')
             elif user.is_patient:
-                return redirect('')
+                return redirect('patientdashboard')
 
         else:
             messages.info(request, 'invalid Credentials')
-    return redirect(request, 'index.html')
+    return render(request,'login.html')
 
 
 def department(request):
