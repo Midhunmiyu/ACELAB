@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
-from home.forms import departmentform
-from home.models import department
+from home.forms import departmentform, doctorlogin
+from home.models import department, doctor
 
 
 def admindashboard(request):
@@ -27,3 +27,6 @@ def delete(request, id):
     data.delete()
 
     return redirect('view_department')
+
+
+

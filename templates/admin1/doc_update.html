@@ -1,0 +1,11 @@
+{% extends 'admin1/admindashboard.html' %}
+{%load crispy_forms_tags %}
+{% block title %}View Departments{% endblock title %}
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{form|crispy}}
+    <button type="submit" class="btn btn-primary">SUBMIT</button>
+</form>
+{% endblock %}

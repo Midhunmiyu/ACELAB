@@ -60,13 +60,13 @@ def login_view(request):
             if user.is_staff:
                 return redirect('admindashboard')
             elif user.is_doctor:
-               return redirect('doctordashboard')
+                return redirect('doctordashboard')
             elif user.is_patient:
                 return redirect('patientdashboard')
 
         else:
             messages.info(request, 'invalid Credentials')
-    return render(request,'login.html')
+    return render(request, 'login.html')
 
 
 def department(request):
