@@ -351,17 +351,22 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Add Notification</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-menu-button-wide"></i><span>Notification</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href=" {% url 'add_department' %} ">
+            <a href=" {% url 'doc_notification' %} ">
               <i class="bi bi-circle"></i><span>To Doctors</span>
             </a>
           </li>
           <li>
-            <a href=" {% url 'view_department' %} ">
+            <a href=" {% url 'pat_notification' %} ">
               <i class="bi bi-circle"></i><span>To Patients</span>
+            </a>
+          </li>
+          <li>
+            <a href=" {% url 'view_notifications' %} ">
+              <i class="bi bi-circle"></i><span>View Notifications</span>
             </a>
           </li>
         </ul>

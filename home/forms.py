@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from home.models import Login, doctor, patient, department
+from home.models import Login, doctor, patient, department, Notification
 
 
 class loginform(UserCreationForm):
@@ -31,4 +31,10 @@ class patientlogin(forms.ModelForm):
 class departmentform(forms.ModelForm):
     class Meta:
         model = department
+        fields = '__all__'
+
+
+class NotificationForm(forms.ModelForm):
+    class Meta:
+        model = Notification
         fields = '__all__'

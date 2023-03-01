@@ -36,3 +36,8 @@ class patient(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Notification(models.Model):
+    date = models.DateField(auto_now=True)
+    subject = models.CharField(max_length=150)
