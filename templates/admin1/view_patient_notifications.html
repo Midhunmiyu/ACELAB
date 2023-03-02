@@ -1,0 +1,35 @@
+{% extends 'admin1/admindashboard.html' %}
+{%load crispy_forms_tags %}
+{% block title %}View Departments{% endblock title %}
+{% block content %}
+<h1 style="text-align:center">These are the Patient notifications</h1><hr><br>
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <table class="table table-dark table-responsive">
+          <thead>
+            <tr>
+              <th scope="col">SL.No</th>
+              <th scope="col">NOTIFICATION</th>
+              <th scope="col">DATE</th>
+
+              <th scope="col">DELETE</th>
+
+            </tr>
+          </thead>
+          <tbody>
+          {%  for i in data %}
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{i.subject}}</td>
+              <td>{{i.date}}</td>
+
+              <td><a href="{% url 'delete_patnotification' i.id %}"> <button type="button" class="btn btn-primary">DELETE</button></a></td>
+            </tr>
+          {% endfor %}
+
+          </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -23,6 +23,7 @@ class doctor(models.Model):
     name = models.CharField(max_length=100)
     department = models.ForeignKey(department, on_delete=models.DO_NOTHING)
     email = models.EmailField()
+    Image = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return self.name
@@ -38,6 +39,11 @@ class patient(models.Model):
         return self.name
 
 
-class Notification(models.Model):
+class DoctorNotification(models.Model):
+    date = models.DateField(auto_now=True)
+    subject = models.CharField(max_length=150)
+
+
+class PatientNotification(models.Model):
     date = models.DateField(auto_now=True)
     subject = models.CharField(max_length=150)

@@ -16,7 +16,7 @@ def doctor_registration(request):
 
     if request.method == 'POST':
         form1 = loginform(request.POST)
-        form2 = doctorlogin(request.POST)
+        form2 = doctorlogin(request.POST,request.FILES)
 
         if form1.is_valid() and form2.is_valid():
             obj = form1.save(commit=False)

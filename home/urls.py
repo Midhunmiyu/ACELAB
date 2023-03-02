@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 from . import views, adminview, doctorviews, patientviews
 
@@ -21,7 +23,10 @@ urlpatterns = [
     path('delete_patient/<int:id>/', adminview.delete_patient, name='delete_patient'),
     path('doc_notification', adminview.doc_notification, name='doc_notification'),
     path('pat_notification', adminview.pat_notification, name='pat_notification'),
-    path('view_notifications', adminview.view_notifications, name='view_notifications'),
+    path('view_pat_notifications', adminview.view_pat_notifications, name='view_pat_notifications'),
+    path('view_doc_notifications', adminview.view_doc_notifications, name='view_doc_notifications'),
+    path('delete_docnotification/<int:id>/', adminview.delete_docnotification, name='delete_docnotification'),
+    path('delete_patnotification/<int:id>/', adminview.delete_patnotification, name='delete_patnotification'),
 
 
     # doctor urls
@@ -32,7 +37,13 @@ urlpatterns = [
     # patient urls
 
     path('patientdashboard', patientviews.patientdashboard, name='patientdashboard'),
+    path('patient_view_department', patientviews.patient_view_department, name='patient_view_department'),
+    path('pattient_view_doctor', patientviews.pattient_view_doctor, name='pattient_view_doctor'),
 
 
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

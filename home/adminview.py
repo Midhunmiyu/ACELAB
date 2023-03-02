@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
-from home.forms import departmentform, doctorlogin, patientlogin, NotificationForm
-from home.models import department, doctor, patient, Notification
+from home.forms import departmentform, doctorlogin, patientlogin, DoctorNotificationForm, PatientNotificationForm
+
+from home.models import department, doctor, patient, DoctorNotification, PatientNotification
 
 
 def admindashboard(request):
@@ -76,25 +77,44 @@ def update_patient(request, id):
 
 
 def doc_notification(request):
-    form = NotificationForm()
+    form = DoctorNotificationForm()
     if request.method == 'POST':
-        form = NotificationForm(request.POST)
+        form = DoctorNotificationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('view_notifications')
+            return redirect('view_doc_notifications')
     return render(request, 'admin1/doc_notification.html', {'form': form})
 
 
 def pat_notification(request):
-    form = NotificationForm()
+    form = PatientNotificationForm()
     if request.method == 'POST':
-        form = NotificationForm(request.POST)
+        form = PatientNotificationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('view_notifications')
+            return redirect('view_pat_notifications')
     return render(request, 'admin1/patient_notification.html', {'form': form})
 
 
-def view_notifications(request):
-    data = Notification.objects.all()
-    return render(request, 'admin1/view_notifications.html', {'data': data})
+def view_doc_notifications(request):
+    data = DoctorNotification.objects.all()
+    return render(request, 'admin1/doc_notification_list.html', {'data': data})
+
+
+def view_pat_notifications(request):
+    data = PatientNotification.objects.all()
+    return render(request, 'admin1/view_patient_notifications.html', {'data': data})
+
+
+def delete_docnotification(request, id):
+    data = DoctorNotification.objects.get(id=id)
+    data.delete()
+
+    return redirect('view_doc_notifications')
+
+
+def delete_patnotification(request, id):
+    data = PatientNotification.objects.get(id=id)
+    data.delete()
+
+    return redirect('view_pat_notifications')
