@@ -34,6 +34,7 @@ urlpatterns = [
     # doctor urls
 
     path('doctordashboard', doctorviews.doctordashboard, name='doctordashboard'),
+    path('doc_view_feedback', doctorviews.doc_view_feedback, name='doc_view_feedback'),
 
 
     # patient urls

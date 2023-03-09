@@ -128,10 +128,13 @@ def admin_view_feedbacks(request):
 
 def reply_feedback(request, id):
     data = Feedback.objects.get(id=id)
-    form = AdminFeedback(instance=data)
+    # list = AdminFeedback(instance=data)
     if request.method == 'POST':
-        form = AdminFeedback(request.POST, instance=data)
-        if form.is_valid():
-            form.save()
-            return redirect('admin_view_feedbacks')
-    return render(request, 'admin1/reply_feedback.html', {'form': form})
+        r=request.POST.get('reply',)
+        data.reply=r
+
+        # list = AdminFeedback(request.POST, instance=data)
+        # if data.is_valid():
+        data.save()
+        return redirect('admin_view_feedbacks')
+    return render(request, 'admin1/reply_feedback.html', {'list': data})

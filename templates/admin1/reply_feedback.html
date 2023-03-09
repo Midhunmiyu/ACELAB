@@ -1,11 +1,24 @@
 {% extends 'admin1/admindashboard.html' %}
 {%load crispy_forms_tags %}
-{% block content %}
-<h1 style="text-align:center">Reply feedback</h1><hr><br>
 
-<form method="POST">
-    {% csrf_token %}
-    {{form|crispy}}
-    <button type="submit" class="btn btn-primary">Reply</button>
-</form>
+{% block content %}
+    <h1 class="text-center">Feedback</h1><hr><br>
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label class="form-control-label" >Name</label>
+        <input type="text" class="form-control" required readonly value="{{list.user}}">
+      </div>
+      <div class="mb-3">
+        <label class="form-control-label" >Feedback</label>
+        <input type="text" class="form-control" required readonly value="{{list.feedback}}">
+      </div>
+      <div class="mb-3">
+        <label class="form-control-label" >Reply</label>
+        <textarea type="text" class="form-control" required name="reply" rows="3"></textarea>
+
+      </div>
+      <button type="submit" class="btn btn-primary">Reply</button>
+    </form>
+
 {% endblock %}

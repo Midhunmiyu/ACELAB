@@ -55,3 +55,5 @@ class Feedback(models.Model):
     date = models.DateField(auto_now=True)
     reply = models.TextField(null=True, blank=True)
 
+
+
