@@ -47,3 +47,11 @@ class DoctorNotification(models.Model):
 class PatientNotification(models.Model):
     date = models.DateField(auto_now=True)
     subject = models.CharField(max_length=150)
+
+
+class Feedback(models.Model):
+    user = models.ForeignKey(Login, on_delete=models.CASCADE)
+    feedback = models.CharField(max_length=200)
+    date = models.DateField(auto_now=True)
+    reply = models.TextField(null=True, blank=True)
+

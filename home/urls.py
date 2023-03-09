@@ -27,6 +27,8 @@ urlpatterns = [
     path('view_doc_notifications', adminview.view_doc_notifications, name='view_doc_notifications'),
     path('delete_docnotification/<int:id>/', adminview.delete_docnotification, name='delete_docnotification'),
     path('delete_patnotification/<int:id>/', adminview.delete_patnotification, name='delete_patnotification'),
+    path('admin_view_feedbacks', adminview.admin_view_feedbacks, name='admin_view_feedbacks'),
+    path('reply_feedback/<int:id>/', adminview.reply_feedback, name='reply_feedback'),
 
 
     # doctor urls
@@ -38,7 +40,9 @@ urlpatterns = [
 
     path('patientdashboard', patientviews.patientdashboard, name='patientdashboard'),
     path('patient_view_department', patientviews.patient_view_department, name='patient_view_department'),
-    path('pattient_view_doctor', patientviews.pattient_view_doctor, name='pattient_view_doctor'),
+    path('patient_view_doctor', patientviews.patient_view_doctor, name='patient_view_doctor'),
+    path('AddFeedback', patientviews.AddFeedback, name='AddFeedback'),
+    path('view_feedback', patientviews.view_feedback, name='view_feedback'),
 
 
 

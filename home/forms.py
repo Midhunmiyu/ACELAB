@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from home.models import Login, doctor, patient, department, DoctorNotification, PatientNotification
+from home.models import Login, doctor, patient, department, DoctorNotification, PatientNotification, Feedback
 
 
 class loginform(UserCreationForm):
@@ -43,4 +43,17 @@ class DoctorNotificationForm(forms.ModelForm):
 class PatientNotificationForm(forms.ModelForm):
     class Meta:
         model = PatientNotification
+        fields = '__all__'
+
+
+class FeedbackForm(forms.ModelForm):
+    class Meta:
+        model = Feedback
+        fields = '__all__'
+        exclude = ('reply', 'user',)
+
+
+class AdminFeedback(forms.ModelForm):
+    class Meta:
+        model = Feedback
         fields = '__all__'

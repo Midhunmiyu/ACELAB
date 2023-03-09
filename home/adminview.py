@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
-from home.forms import departmentform, doctorlogin, patientlogin, DoctorNotificationForm, PatientNotificationForm
+from home.forms import departmentform, doctorlogin, patientlogin, DoctorNotificationForm, PatientNotificationForm, \
+    FeedbackForm, AdminFeedback
 
-from home.models import department, doctor, patient, DoctorNotification, PatientNotification
+from home.models import department, doctor, patient, DoctorNotification, PatientNotification, Feedback
 
 
 def admindashboard(request):
@@ -118,3 +119,19 @@ def delete_patnotification(request, id):
     data.delete()
 
     return redirect('view_pat_notifications')
+
+
+def admin_view_feedbacks(request):
+    data = Feedback.objects.all()
+    return render(request, 'admin1/viewfeedback.html', {'data': data})
+
+
+def reply_feedback(request, id):
+    data = Feedback.objects.get(id=id)
+    form = AdminFeedback(instance=data)
+    if request.method == 'POST':
+        form = AdminFeedback(request.POST, instance=data)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_view_feedbacks')
+    return render(request, 'admin1/reply_feedback.html', {'form': form})
