@@ -1,0 +1,39 @@
+{% extends 'patient/patientbase.html' %}
+{%load crispy_forms_tags %}
+{% block content %}
+<h1 class="text-center">Make Your Appointments</h1><hr><br>
+<div class="card-body card-block">
+            <form method="post">{% csrf_token %}
+                <div class="form-group">
+                    <label class=" form-control-label"> Patient Name</label>
+                    <input  type="text"  class="form-control" readonly value="{{request.user}}">
+
+                </div>
+                 <div class="form-group">
+                    <label class=" form-control-label">Doctor Name</label>
+                    <input type="text" required  class="form-control" readonly value="{{data.Doc_name}}">
+
+                </div>
+                <div class="form-group">
+                    <label class=" form-control-label">Date</label>
+                    <input  required  class="form-control" readonly value="{{data.Date}}">
+
+                </div>
+                <div class="form-group">
+                    <label class=" form-control-label">Start Time</label>
+                    <input  required  class="form-control" readonly value="{{data.Start_time}}">
+
+                </div>
+                <div class="form-group">
+                    <label  class=" form-control-label">End Time</label>
+                    <input  required  class="form-control" readonly value="{{data.End_time}}">
+
+                </div>
+                <br>
+                <div class="form-actions form-group ">
+                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                </div>
+            </form>
+</div>
+
+{% endblock %}

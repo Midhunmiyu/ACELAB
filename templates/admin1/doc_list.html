@@ -21,7 +21,7 @@
             <tr>
               <th scope="row">{{forloop.counter}}</th>
               <td>{{i.name}}</td>
-              <td><img src="{{ i.Image.url }}" class="img-responsive" style="width:150px;height:100px; float: left; margin-right: 10px;" /></td>
+              <td><img src="{{ i.Image.url }}" class="img-responsive rounded-circle" style="width:100px;height:100px; float: left; margin-right: 10px;" /></td>
               <td><a href="{% url 'update' i.id %}"> <button type="button" class="btn btn-primary">UPDATE</button></a></td>
 
               <td><a href="{% url 'doc_delete' i.id %}"> <button type="button" class="btn btn-primary">DELETE</button></a></td>

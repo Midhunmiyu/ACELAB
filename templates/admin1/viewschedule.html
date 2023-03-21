@@ -1,0 +1,36 @@
+{% extends 'admin1/admindashboard.html' %}
+{%load crispy_forms_tags %}
+{% block title %}View Schedules{% endblock title %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <table class="table table-dark table-responsive">
+          <thead>
+            <tr>
+              <th scope="col">SL.No</th>
+              <th scope="col">DOCTOR NAME</th>
+              <th scope="col">DATE</th>
+              <th scope="col">START TIME</th>
+              <th scope="col">END TIME</th>
+              <th scope="col">DELETE</th>
+
+            </tr>
+          </thead>
+          <tbody>
+          {%  for i in data %}
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{i.Doc_name}}</td>
+              <td>{{i.Date}}</td>
+              <td>{{i.Start_time}}</td>
+              <td>{{i.End_time}}</td>
+              <td><a href="{% url 'delete_schedule' i.id %}"> <button type="button" class="btn btn-primary">DELETE</button></a></td>
+            </tr>
+          {% endfor %}
+
+          </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

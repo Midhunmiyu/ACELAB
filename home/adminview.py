@@ -1,8 +1,10 @@
+from django.contrib import messages
 from django.shortcuts import redirect, render
 from home.forms import departmentform, doctorlogin, patientlogin, DoctorNotificationForm, PatientNotificationForm, \
-    FeedbackForm, AdminFeedback
+    FeedbackForm, AdminFeedback, ScheduleForm
 
-from home.models import department, doctor, patient, DoctorNotification, PatientNotification, Feedback
+from home.models import department, doctor, patient, DoctorNotification, PatientNotification, Feedback, \
+    DocSchedule, Appointment
 
 
 def admindashboard(request):
@@ -130,11 +132,52 @@ def reply_feedback(request, id):
     data = Feedback.objects.get(id=id)
     # list = AdminFeedback(instance=data)
     if request.method == 'POST':
-        r=request.POST.get('reply',)
-        data.reply=r
+        r = request.POST.get('reply', )
+        data.reply = r
 
         # list = AdminFeedback(request.POST, instance=data)
         # if data.is_valid():
         data.save()
         return redirect('admin_view_feedbacks')
     return render(request, 'admin1/reply_feedback.html', {'list': data})
+
+
+def add_schedule(request):
+    form = ScheduleForm()
+    if request.method == 'POST':
+        form = ScheduleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('view_schedule')
+    return render(request, 'admin1/Addschedule.html', {'form': form})
+
+
+def view_schedule(request):
+    data = DocSchedule.objects.all()
+    return render(request, 'admin1/viewschedule.html', {'data': data})
+
+
+def delete_schedule(request, id):
+    data = DocSchedule.objects.get(id=id)
+    data.delete()
+    return redirect('view_schedule')
+
+
+def booking_view(request):
+    data=Appointment.objects.all()
+    return render(request,'admin1/booking_view.html',{'data':data})
+
+def approve_app(request,id):
+    data=Appointment.objects.get(id=id)
+    data.status=1
+    data.save()
+    messages.info(request,'Appointment Confirmed')
+    return redirect('booking_view')
+
+def reject_app(request,id):
+    data=Appointment.objects.get(id=id)
+    data.status=2
+    data.save()
+    messages.info(request,'Appointment Rejected')
+    return redirect('booking_view')
+

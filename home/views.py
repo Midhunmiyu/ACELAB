@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from home.forms import loginform, doctorlogin, patientlogin
 
 
+
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -16,7 +17,7 @@ def doctor_registration(request):
 
     if request.method == 'POST':
         form1 = loginform(request.POST)
-        form2 = doctorlogin(request.POST,request.FILES)
+        form2 = doctorlogin(request.POST, request.FILES)
 
         if form1.is_valid() and form2.is_valid():
             obj = form1.save(commit=False)
@@ -75,3 +76,4 @@ def department(request):
 
 def contact(request):
     return render(request, 'login.html')
+

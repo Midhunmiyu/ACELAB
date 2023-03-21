@@ -56,4 +56,18 @@ class Feedback(models.Model):
     reply = models.TextField(null=True, blank=True)
 
 
+class DocSchedule(models.Model):
+    Doc_name = models.ForeignKey(doctor, on_delete=models.CASCADE)
+    Date = models.DateField()
+    Start_time = models.TimeField()
+    End_time = models.TimeField()
 
+    def __str__(self):
+        return self.Doc_name
+class Appointment(models.Model):
+    user=models.ForeignKey(patient,on_delete=models.CASCADE,related_name='appointment')
+    Schedule=models.ForeignKey(DocSchedule,on_delete=models.CASCADE)
+    status=models.IntegerField(default=0)
+
+    def __int__(self):
+        return self.status

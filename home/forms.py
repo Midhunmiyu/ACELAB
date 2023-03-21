@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from home.models import Login, doctor, patient, department, DoctorNotification, PatientNotification, Feedback
+from home.models import Login, doctor, patient, department, DoctorNotification, PatientNotification, Feedback, \
+    DocSchedule
 
 
 class loginform(UserCreationForm):
@@ -58,3 +59,21 @@ class AdminFeedback(forms.ModelForm):
         model = Feedback
         fields = '__all__'
         exclude = ('user',)
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
+class TimeInput(forms.TimeInput):
+    input_type = 'time'
+
+
+class ScheduleForm(forms.ModelForm):
+    Date = forms.DateField(widget=DateInput)
+    Start_time = forms.TimeField(widget=TimeInput)
+    End_time = forms.TimeField(widget=TimeInput)
+
+    class Meta:
+        model = DocSchedule
+        fields = ('Doc_name','Date','Start_time','End_time')

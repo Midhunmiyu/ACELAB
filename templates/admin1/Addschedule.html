@@ -1,0 +1,16 @@
+{% extends 'admin1/admindashboard.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Add Schedules{% endblock title %}
+{% block content %}
+
+<form method="post" class="text-center" >
+    {% csrf_token %}
+    {{form|crispy}}
+    <br>
+    <button type="submit">Submit</button>
+
+</form>
+
+
+
+{% endblock %}

@@ -9,6 +9,7 @@ urlpatterns = [
     path('patient_registration', views.patient_registration, name='patient_registration'),
     path('login_view', views.login_view, name='login_view'),
 
+
     # admin urls
 
     path('add_department', adminview.add_department, name='add_department'),
@@ -29,6 +30,12 @@ urlpatterns = [
     path('delete_patnotification/<int:id>/', adminview.delete_patnotification, name='delete_patnotification'),
     path('admin_view_feedbacks', adminview.admin_view_feedbacks, name='admin_view_feedbacks'),
     path('reply_feedback/<int:id>/', adminview.reply_feedback, name='reply_feedback'),
+    path('add_schedule', adminview.add_schedule, name='add_schedule'),
+    path('view_schedule', adminview.view_schedule, name='view_schedule'),
+    path('delete_schedule/<int:id>/', adminview.delete_schedule, name='delete_schedule'),
+    path('booking_view', adminview.booking_view, name='booking_view'),
+    path('approve_app/<int:id>/', adminview.approve_app, name='approve_app'),
+    path('reject_app/<int:id>/', adminview.reject_app, name='reject_app'),
 
 
     # doctor urls
@@ -44,6 +51,10 @@ urlpatterns = [
     path('patient_view_doctor', patientviews.patient_view_doctor, name='patient_view_doctor'),
     path('AddFeedback', patientviews.AddFeedback, name='AddFeedback'),
     path('view_feedback', patientviews.view_feedback, name='view_feedback'),
+    path('patient_view_notification', patientviews.patient_view_notification, name='patient_view_notification'),
+    path('patient_view_schedule', patientviews.patient_view_schedule, name='patient_view_schedule'),
+    path('book_apppointment/<int:id>/', patientviews.book_apppointment, name='book_apppointment'),
+    path('appointment_view', patientviews.appointment_view, name='appointment_view'),
 
 
 

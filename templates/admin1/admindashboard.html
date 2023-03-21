@@ -335,9 +335,21 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href=" {% static 'users-profile.html' %} ">
+        <a class="nav-link collapsed" href=" {% url 'add_schedule' %} ">
           <i class="bi bi-calendar-date"></i>
           <span>Add Schedule </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href=" {% url 'view_schedule' %} ">
+          <i class="bi bi-calendar-date"></i>
+          <span>View Schedule </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'booking_view' %}">
+          <i class="bi bi-view-stacked"></i>
+          <span>Appointment View</span>
         </a>
       </li>
 

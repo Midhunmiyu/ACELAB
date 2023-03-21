@@ -217,8 +217,8 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6>{{request.user}}</h6>
+              <span>Doctor</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -756,7 +756,7 @@
         <!-- Right side columns -->
         <div class="col-lg-12 col-md-12 col-sm-12">
            {% block content %}
-            <h1 class="text_center">Welcome To Doctors Dashboard</h1>
+            <h1 style="text-align:center">Welcome To Doctors Dashboard</h1>
            {% endblock%}
 
         </div><!-- End Right side columns -->
