@@ -19,11 +19,12 @@ class department(models.Model):
 
 
 class doctor(models.Model):
-    user = models.ForeignKey(Login, on_delete=models.CASCADE)
+    user = models.OneToOneField(Login, on_delete=models.CASCADE,primary_key=True, related_name='Doctor')
     name = models.CharField(max_length=100)
     department = models.ForeignKey(department, on_delete=models.DO_NOTHING)
     email = models.EmailField()
     Image = models.ImageField(upload_to='images/')
+    status = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -57,17 +58,19 @@ class Feedback(models.Model):
 
 
 class DocSchedule(models.Model):
-    Doc_name = models.ForeignKey(doctor, on_delete=models.CASCADE)
+    Doc_name = models.ForeignKey(doctor, on_delete=models.DO_NOTHING)
     Date = models.DateField()
     Start_time = models.TimeField()
     End_time = models.TimeField()
 
     def __str__(self):
         return self.Doc_name
+
+
 class Appointment(models.Model):
-    user=models.ForeignKey(patient,on_delete=models.CASCADE,related_name='appointment')
-    Schedule=models.ForeignKey(DocSchedule,on_delete=models.CASCADE)
-    status=models.IntegerField(default=0)
+    user = models.ForeignKey(patient, on_delete=models.CASCADE, related_name='appointment')
+    Schedule = models.ForeignKey(DocSchedule, on_delete=models.CASCADE)
+    status = models.IntegerField(default=0)
 
     def __int__(self):
         return self.status

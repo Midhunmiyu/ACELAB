@@ -1,5 +1,5 @@
-{% extends 'admin1/admindashboard.html' %}
-{%load crispy_forms_tags %}
+{% extends 'doctor/doctorbase.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 <h1 style="text-align:center"> Patients List</h1><hr><br>
 <div class="row justify-content-center">
@@ -11,8 +11,6 @@
               <th scope="col">PATIENT NAME</th>
               <th scope="col">AADHAR NO.</th>
               <th scope="col">EMAIL</th>
-              <th scope="col">UPDATE</th>
-              <th scope="col">DELETE</th>
 
             </tr>
           </thead>
@@ -23,9 +21,6 @@
               <td>{{i.name}}</td>
               <td>{{i.aadhar_number}}</td>
               <td>{{i.email}}</td>
-              <td><a href="{% url 'update_patient' i.id %}"> <button type="button" class="btn btn-primary">UPDATE</button></a></td>
-
-              <td><a href="{% url 'delete_patient' i.id %}"> <button type="button" class="btn btn-primary">DELETE</button></a></td>
             </tr>
           {% endfor %}
 
@@ -33,5 +28,4 @@
         </table>
     </div>
 </div>
-
 {% endblock %}

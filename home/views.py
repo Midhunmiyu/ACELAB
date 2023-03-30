@@ -5,8 +5,9 @@ from django.shortcuts import render, redirect
 from home.forms import loginform, doctorlogin, patientlogin
 
 
-
 # Create your views here.
+
+
 def index(request):
     return render(request, 'index.html')
 
@@ -26,6 +27,7 @@ def doctor_registration(request):
             data = form2.save(commit=False)
             data.user = obj
             data.save()
+
             return redirect('login_view')
 
     return render(request, 'doctor/doctor_registration.html', {'form1': form1, 'form2': form2})
@@ -56,14 +58,23 @@ def login_view(request):
         username = request.POST.get('uname')
         password = request.POST.get('pass')
         user = authenticate(request, username=username, password=password)
+
         if user is not None:
-            login(request, user)
+
             if user.is_staff:
+                login(request, user)
                 return redirect('admindashboard')
-            elif user.is_doctor:
-                return redirect('doctordashboard')
+
             elif user.is_patient:
+                login(request, user)
                 return redirect('patientdashboard')
+
+            elif user.is_doctor and user.Doctor.status == 1:
+                print(user)
+                login(request, user)
+                return redirect('doctordashboard')
+            else:
+                messages.info(request, 'You are not a verified user')
 
         else:
             messages.info(request, 'invalid Credentials')
@@ -76,4 +87,3 @@ def department(request):
 
 def contact(request):
     return render(request, 'login.html')
-

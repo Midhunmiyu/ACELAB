@@ -67,6 +67,6 @@ def book_apppointment(request, id):
 
 
 def appointment_view(request):
-    p= patient.objects.get(user=request.user)
-    data=Appointment.objects.filter(user=p)
-    return render(request, 'patient/appointment_view.html',{'data':data})
+    p = patient.objects.get(user=request.user)
+    data = Appointment.objects.filter(user=p)
+    return render(request, 'patient/appointment_view.html', {'data': data})

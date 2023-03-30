@@ -36,12 +36,17 @@ urlpatterns = [
     path('booking_view', adminview.booking_view, name='booking_view'),
     path('approve_app/<int:id>/', adminview.approve_app, name='approve_app'),
     path('reject_app/<int:id>/', adminview.reject_app, name='reject_app'),
-
+    path('doc_approval_list', adminview.doc_approval_list, name='doc_approval_list'),
+    path('approve_doc/<int:id>/', adminview.approve_doc, name='approve_doc'),
+    path('reject_doc/<int:id>/', adminview.reject_doc, name='reject_doc'),
 
     # doctor urls
 
     path('doctordashboard', doctorviews.doctordashboard, name='doctordashboard'),
     path('doc_view_feedback', doctorviews.doc_view_feedback, name='doc_view_feedback'),
+    path('doc_view_appointments', doctorviews.doc_view_appointments, name='doc_view_appointments'),
+    path('doc_view_patients', doctorviews.doc_view_patients, name='doc_view_patients'),
+    path('doc_view_notificaction', doctorviews.doc_view_notificaction, name='doc_view_notificaction'),
 
 
     # patient urls

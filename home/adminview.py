@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from home.forms import departmentform, doctorlogin, patientlogin, DoctorNotificationForm, PatientNotificationForm, \
-    FeedbackForm, AdminFeedback, ScheduleForm
+     ScheduleForm
 
 from home.models import department, doctor, patient, DoctorNotification, PatientNotification, Feedback, \
     DocSchedule, Appointment
@@ -164,20 +164,42 @@ def delete_schedule(request, id):
 
 
 def booking_view(request):
-    data=Appointment.objects.all()
-    return render(request,'admin1/booking_view.html',{'data':data})
+    data = Appointment.objects.all()
+    return render(request, 'admin1/booking_view.html', {'data': data})
 
-def approve_app(request,id):
-    data=Appointment.objects.get(id=id)
-    data.status=1
+
+def approve_app(request, id):
+    data = Appointment.objects.get(id=id)
+    data.status = 1
     data.save()
-    messages.info(request,'Appointment Confirmed')
+    messages.info(request, 'Appointment Confirmed')
     return redirect('booking_view')
 
-def reject_app(request,id):
-    data=Appointment.objects.get(id=id)
-    data.status=2
+
+def reject_app(request, id):
+    data = Appointment.objects.get(id=id)
+    data.status = 2
     data.save()
-    messages.info(request,'Appointment Rejected')
+    messages.info(request, 'Appointment Rejected')
     return redirect('booking_view')
 
+
+def doc_approval_list(request):
+    data = doctor.objects.all()
+    return render(request, 'admin1/doc_approval_list.html', {'data': data})
+
+
+def approve_doc(request, id):
+    data = doctor.objects.get(id=id)
+    data.status = 1
+    data.save()
+    messages.info(request, 'Doctor is approved to log in')
+    return redirect('doc_approval_list')
+
+
+def reject_doc(request, id):
+    data = doctor.objects.get(id=id)
+    data.status = 2
+    data.save()
+    messages.info(request, 'Doctor approval request  is rejected')
+    return redirect('doc_approval_list')

@@ -218,8 +218,8 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6>{{request.user}}</h6>
+              <span>Admin</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -328,23 +328,27 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href=" {% static 'users-profile.html' %} ">
+        <a class="nav-link collapsed" href=" {% url 'doc_approval_list' %} ">
           <i class="bi bi-shield-shaded"></i>
           <span>Doctors Approaval </span>
         </a>
       </li><!-- End Profile Page Nav -->
-
       <li class="nav-item">
-        <a class="nav-link collapsed" href=" {% url 'add_schedule' %} ">
-          <i class="bi bi-calendar-date"></i>
-          <span>Add Schedule </span>
+        <a class="nav-link collapsed" data-bs-target="#schedule-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-calendar-date"></i><span>Schedule</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href=" {% url 'view_schedule' %} ">
-          <i class="bi bi-calendar-date"></i>
-          <span>View Schedule </span>
-        </a>
+        <ul id="schedule-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href=" {% url 'add_schedule' %} ">
+              <i class="bi bi-circle"></i><span>Add Schedule</span>
+            </a>
+          </li>
+          <li>
+            <a href=" {% url 'view_schedule' %} ">
+              <i class="bi bi-circle"></i><span>View Schedule</span>
+            </a>
+          </li>
+        </ul>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="{% url 'booking_view' %}">
@@ -362,10 +366,10 @@
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#notification-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-bell-fill"></i><span>Notification</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="notification-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href=" {% url 'doc_notification' %} ">
               <i class="bi bi-circle"></i><span>To Doctors</span>

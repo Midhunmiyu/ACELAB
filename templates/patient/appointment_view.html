@@ -2,6 +2,11 @@
 {%load crispy_forms_tags %}
 {% block content %}
 <h1 class="text-center">Appointment Status</h1><hr><br>
+{% for message in messages %}
+<div class="alert alert-primary" role="alert">
+  {{message}}
+</div>
+{% endfor %}
 <div class="row justify-content-center">
     <div class="col-auto">
         <table class="table table-dark table-responsive">

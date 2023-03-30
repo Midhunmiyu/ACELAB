@@ -1,3 +1,5 @@
+import datetime
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
@@ -19,7 +21,7 @@ class doctorlogin(forms.ModelForm):
     class Meta:
         model = doctor
         fields = '__all__'
-        exclude = ('user',)
+        exclude = ('user','status',)
 
 
 class patientlogin(forms.ModelForm):
@@ -76,4 +78,16 @@ class ScheduleForm(forms.ModelForm):
 
     class Meta:
         model = DocSchedule
-        fields = ('Doc_name','Date','Start_time','End_time')
+        fields = ('Doc_name', 'Date', 'Start_time', 'End_time')
+
+    def clean(self):
+        cleaned_data = super().clean()
+        start = cleaned_data.get("Start_time")
+        end = cleaned_data.get("End_time")
+        date = cleaned_data.get("Date")
+        if start > end:
+            raise forms.ValidationError("End Time should be greater than start Time.")
+
+        if date < datetime.date.today():
+            raise forms.ValidationError("Date can't be in the past")
+        return cleaned_data
