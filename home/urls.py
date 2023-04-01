@@ -8,6 +8,7 @@ urlpatterns = [
     path('doctor_registration', views.doctor_registration, name='doctor_registration'),
     path('patient_registration', views.patient_registration, name='patient_registration'),
     path('login_view', views.login_view, name='login_view'),
+    path('logout_view', views.logout_view, name='logout_view'),
 
 
     # admin urls
@@ -37,8 +38,8 @@ urlpatterns = [
     path('approve_app/<int:id>/', adminview.approve_app, name='approve_app'),
     path('reject_app/<int:id>/', adminview.reject_app, name='reject_app'),
     path('doc_approval_list', adminview.doc_approval_list, name='doc_approval_list'),
-    path('approve_doc/<int:id>/', adminview.approve_doc, name='approve_doc'),
-    path('reject_doc/<int:id>/', adminview.reject_doc, name='reject_doc'),
+    path('approve_doc/<int:user_id>/', adminview.approve_doc, name='approve_doc'),
+    path('reject_doc/<int:user_id>/', adminview.reject_doc, name='reject_doc'),
 
     # doctor urls
 
@@ -47,6 +48,7 @@ urlpatterns = [
     path('doc_view_appointments', doctorviews.doc_view_appointments, name='doc_view_appointments'),
     path('doc_view_patients', doctorviews.doc_view_patients, name='doc_view_patients'),
     path('doc_view_notificaction', doctorviews.doc_view_notificaction, name='doc_view_notificaction'),
+    path('view_patient_data', doctorviews.view_patient_data, name='view_patient_data'),
 
 
     # patient urls
@@ -60,6 +62,8 @@ urlpatterns = [
     path('patient_view_schedule', patientviews.patient_view_schedule, name='patient_view_schedule'),
     path('book_apppointment/<int:id>/', patientviews.book_apppointment, name='book_apppointment'),
     path('appointment_view', patientviews.appointment_view, name='appointment_view'),
+    path('patient_data', patientviews.patient_data, name='patient_data'),
+
 
 
 

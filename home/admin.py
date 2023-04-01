@@ -2,7 +2,7 @@ from django.contrib import admin
 
 
 from home.models import Login, doctor, patient, department, DoctorNotification, PatientNotification, \
-    Feedback, DocSchedule, Appointment
+    Feedback, DocSchedule, Appointment, PatientData
 
 # Register your models here.
 admin.site.register(Login)
@@ -14,4 +14,5 @@ admin.site.register(PatientNotification)
 admin.site.register(Feedback)
 admin.site.register(DocSchedule)
 admin.site.register(Appointment)
+admin.site.register(PatientData)
 

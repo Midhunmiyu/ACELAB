@@ -19,7 +19,7 @@ class department(models.Model):
 
 
 class doctor(models.Model):
-    user = models.OneToOneField(Login, on_delete=models.CASCADE,primary_key=True, related_name='Doctor')
+    user = models.OneToOneField(Login, on_delete=models.CASCADE, primary_key=True, related_name='Doctor')
     name = models.CharField(max_length=100)
     department = models.ForeignKey(department, on_delete=models.DO_NOTHING)
     email = models.EmailField()
@@ -74,3 +74,12 @@ class Appointment(models.Model):
 
     def __int__(self):
         return self.status
+
+
+class PatientData(models.Model):
+    user = models.ForeignKey(Login, on_delete=models.CASCADE)
+    Title = models.CharField(max_length=100)
+    P_data = models.FileField(upload_to='data/')
+
+    # def __str__(self):
+    #     return self.user.name

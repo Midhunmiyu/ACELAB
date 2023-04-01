@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from home.models import Login, doctor, patient, department, DoctorNotification, PatientNotification, Feedback, \
-    DocSchedule
+    DocSchedule, PatientData
 
 
 class loginform(UserCreationForm):
@@ -21,7 +21,7 @@ class doctorlogin(forms.ModelForm):
     class Meta:
         model = doctor
         fields = '__all__'
-        exclude = ('user','status',)
+        exclude = ('user', 'status',)
 
 
 class patientlogin(forms.ModelForm):
@@ -91,3 +91,9 @@ class ScheduleForm(forms.ModelForm):
         if date < datetime.date.today():
             raise forms.ValidationError("Date can't be in the past")
         return cleaned_data
+
+
+class PatientDataForm(forms.ModelForm):
+    class Meta:
+        model = PatientData
+        fields = ('Title','P_data',)

@@ -1,0 +1,17 @@
+{% extends 'patient/patientbase.html' %}
+{%load crispy_forms_tags %}
+{% block content %}
+<h1 class="text-center">Send Data to Doctor</h1><br><br>
+{% for message in messages %}
+<div class="alert alert-primary" role="alert">
+  {{message}}
+</div>
+{% endfor %}
+<form method="post" class="text-center" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form|crispy}}
+    <br>
+    <button type="submit">Send</button>
+
+</form>
+{% endblock %}

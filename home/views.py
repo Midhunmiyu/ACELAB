@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 from home.forms import loginform, doctorlogin, patientlogin
@@ -87,3 +87,8 @@ def department(request):
 
 def contact(request):
     return render(request, 'login.html')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('login_view')

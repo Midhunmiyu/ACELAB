@@ -1,16 +1,19 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from home.forms import departmentform, doctorlogin, patientlogin, DoctorNotificationForm, PatientNotificationForm, \
-     ScheduleForm
+    ScheduleForm
 
 from home.models import department, doctor, patient, DoctorNotification, PatientNotification, Feedback, \
     DocSchedule, Appointment
 
 
+@login_required(login_url='login_view')
 def admindashboard(request):
     return render(request, 'admin1/admindashboard.html')
 
 
+@login_required(login_url='login_view')
 def add_department(request):
     form = departmentform()
     if request.method == 'POST':
@@ -21,11 +24,13 @@ def add_department(request):
     return render(request, 'admin1/adddepartments.html', {'form': form})
 
 
+@login_required(login_url='login_view')
 def view_department(request):
     data = department.objects.all()
     return render(request, 'admin1/viewdepartments.html', {'data': data})
 
 
+@login_required(login_url='login_view')
 def delete(request, id):
     data = department.objects.get(id=id)
     data.delete()
@@ -33,11 +38,13 @@ def delete(request, id):
     return redirect('view_department')
 
 
+@login_required(login_url='login_view')
 def doc_view(request):
     data = doctor.objects.all()
     return render(request, 'admin1/doc_list.html', {'data': data})
 
 
+@login_required(login_url='login_view')
 def doc_delete(request, id):
     data = doctor.objects.get(id=id)
     data.delete()
@@ -45,6 +52,7 @@ def doc_delete(request, id):
     return redirect('doc_view')
 
 
+@login_required(login_url='login_view')
 def update(request, id):
     data = doctor.objects.get(id=id)
     form = doctorlogin(instance=data)
@@ -56,11 +64,13 @@ def update(request, id):
     return render(request, 'admin1/doc_update.html', {'form': form})
 
 
+@login_required(login_url='login_view')
 def view_patient(request):
     data = patient.objects.all()
     return render(request, 'admin1/view_patient.html', {'data': data})
 
 
+@login_required(login_url='login_view')
 def delete_patient(request, id):
     data = patient.objects.get(id=id)
     data.delete()
@@ -68,6 +78,7 @@ def delete_patient(request, id):
     return redirect('view_patient')
 
 
+@login_required(login_url='login_view')
 def update_patient(request, id):
     data = patient.objects.get(id=id)
     form = patientlogin(instance=data)
@@ -79,6 +90,7 @@ def update_patient(request, id):
     return render(request, 'admin1/update_patient.html', {'form': form})
 
 
+@login_required(login_url='login_view')
 def doc_notification(request):
     form = DoctorNotificationForm()
     if request.method == 'POST':
@@ -89,6 +101,7 @@ def doc_notification(request):
     return render(request, 'admin1/doc_notification.html', {'form': form})
 
 
+@login_required(login_url='login_view')
 def pat_notification(request):
     form = PatientNotificationForm()
     if request.method == 'POST':
@@ -99,16 +112,19 @@ def pat_notification(request):
     return render(request, 'admin1/patient_notification.html', {'form': form})
 
 
+@login_required(login_url='login_view')
 def view_doc_notifications(request):
     data = DoctorNotification.objects.all()
     return render(request, 'admin1/doc_notification_list.html', {'data': data})
 
 
+@login_required(login_url='login_view')
 def view_pat_notifications(request):
     data = PatientNotification.objects.all()
     return render(request, 'admin1/view_patient_notifications.html', {'data': data})
 
 
+@login_required(login_url='login_view')
 def delete_docnotification(request, id):
     data = DoctorNotification.objects.get(id=id)
     data.delete()
@@ -116,6 +132,7 @@ def delete_docnotification(request, id):
     return redirect('view_doc_notifications')
 
 
+@login_required(login_url='login_view')
 def delete_patnotification(request, id):
     data = PatientNotification.objects.get(id=id)
     data.delete()
@@ -123,11 +140,13 @@ def delete_patnotification(request, id):
     return redirect('view_pat_notifications')
 
 
+@login_required(login_url='login_view')
 def admin_view_feedbacks(request):
     data = Feedback.objects.all()
     return render(request, 'admin1/viewfeedback.html', {'data': data})
 
 
+@login_required(login_url='login_view')
 def reply_feedback(request, id):
     data = Feedback.objects.get(id=id)
     # list = AdminFeedback(instance=data)
@@ -142,6 +161,7 @@ def reply_feedback(request, id):
     return render(request, 'admin1/reply_feedback.html', {'list': data})
 
 
+@login_required(login_url='login_view')
 def add_schedule(request):
     form = ScheduleForm()
     if request.method == 'POST':
@@ -152,22 +172,26 @@ def add_schedule(request):
     return render(request, 'admin1/Addschedule.html', {'form': form})
 
 
+@login_required(login_url='login_view')
 def view_schedule(request):
     data = DocSchedule.objects.all()
     return render(request, 'admin1/viewschedule.html', {'data': data})
 
 
+@login_required(login_url='login_view')
 def delete_schedule(request, id):
     data = DocSchedule.objects.get(id=id)
     data.delete()
     return redirect('view_schedule')
 
 
+@login_required(login_url='login_view')
 def booking_view(request):
     data = Appointment.objects.all()
     return render(request, 'admin1/booking_view.html', {'data': data})
 
 
+@login_required(login_url='login_view')
 def approve_app(request, id):
     data = Appointment.objects.get(id=id)
     data.status = 1
@@ -176,6 +200,7 @@ def approve_app(request, id):
     return redirect('booking_view')
 
 
+@login_required(login_url='login_view')
 def reject_app(request, id):
     data = Appointment.objects.get(id=id)
     data.status = 2
@@ -184,21 +209,24 @@ def reject_app(request, id):
     return redirect('booking_view')
 
 
+@login_required(login_url='login_view')
 def doc_approval_list(request):
     data = doctor.objects.all()
     return render(request, 'admin1/doc_approval_list.html', {'data': data})
 
 
-def approve_doc(request, id):
-    data = doctor.objects.get(id=id)
+@login_required(login_url='login_view')
+def approve_doc(request, user_id):
+    data = doctor.objects.get(user_id=user_id)
     data.status = 1
     data.save()
     messages.info(request, 'Doctor is approved to log in')
     return redirect('doc_approval_list')
 
 
-def reject_doc(request, id):
-    data = doctor.objects.get(id=id)
+@login_required(login_url='login_view')
+def reject_doc(request, user_id):
+    data = doctor.objects.get(user_id=user_id)
     data.status = 2
     data.save()
     messages.info(request, 'Doctor approval request  is rejected')

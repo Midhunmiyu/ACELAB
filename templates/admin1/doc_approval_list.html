@@ -1,8 +1,7 @@
 {% extends 'admin1/admindashboard.html' %}
 {% load crispy_forms_tags %}
-
 {% block content %}
-<h1 class="text-center">Doctors Approval Requests</h1><hr><br>
+<h1 class="text-center">Doctor Approval Requests</h1><hr><br>
 {% for message in messages %}
 <div class="alert alert-primary" role="alert">
   {{message}}
@@ -32,8 +31,8 @@
               <td>{{i.email}}</td>
               <td>
                 {% if i.status == 0 %}
-                <a href="{% url 'approve_doc' i.id %}" type="button" class="btn btn-success">Approve</a>
-                <form action="{% url 'reject_doc' i.id %}" method="post" style="display:inline;" onsubmit="window.mytest()">
+                <a href="{% url 'approve_doc' i.user_id %}" type="button" class="btn btn-success">Approve</a>
+                <form action="{% url 'reject_doc' i.user_id %}" method="post" style="display:inline;" onsubmit="window.mytest()">
                   {% csrf_token %}
                   <input type="hidden" value="{{i.id}}" />
                   <button class="btn btn-danger">Reject</button>

@@ -152,7 +152,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src=" {% static 'set3/assets/img/profile-img.jpg' %} " alt="Profile" class="rounded-circle">
+            <img src=" {{request.user.Doctor.Image.url}} " alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">{{request.user}}</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -196,7 +196,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'logout_view' %}">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -241,7 +241,7 @@
         </a>
       </li>
        <li class="nav-item">
-        <a class="nav-link collapsed" href=" {% static 'users-profile.html' %} ">
+        <a class="nav-link collapsed" href=" {% url 'view_patient_data' %} ">
           <i class="bi bi-journal-text"></i>
           <span>View Patient Data</span>
         </a>

@@ -1,0 +1,41 @@
+{% extends 'doctor/doctorbase.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1 style="text-align:center"> Patients data</h1><hr><br>
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <table class="table table-dark table-responsive">
+          <thead>
+            <tr>
+              <th scope="col">SL.No</th>
+              <th scope="col">PATIENT NAME</th>
+              <th scope="col">TITLE</th>
+              <th scope="col">DATA</th>
+              <th scope="col">DOWNLOAD</th>
+
+            </tr>
+          </thead>
+          <tbody>
+          {%  for i in data %}
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{i.user}}</td>
+              <td>{{i.Title}}</td>
+              <td><img src = "{{i.P_data.url}}" alt="img" width="104" height="142" ></td>
+<!--             <div class="form-group">-->
+<!--                <label class=" form-control-label"><h3>download</h3></label>-->
+                  <td><a href="{{i.P_data.url}}"Download>{{i.P_data}}</a></td>
+<!--              </div>-->
+<!--             <td> <p>Click on the image to download it:<p>-->
+<!--<a href="{{i.P_data}}" download="w3logo">-->
+<!--  <img src="{{PatientData.P_data.url}}" alt="W3Schools" width="104" height="142">-->
+<!--</a></td>-->
+
+            </tr>
+          {% endfor %}
+
+          </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
