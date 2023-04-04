@@ -93,6 +93,6 @@ def patient_data(request):
             obj = form.save(commit=False)
             obj.user = u
             obj.save()
+            messages.info(request, 'The data sent Successfully..!!')
             return redirect('patient_data')
-        messages.info(request, 'The data sent Successfully..!!')
     return render(request, 'patient/patient_data.html', {'form': form})

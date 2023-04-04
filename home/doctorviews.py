@@ -39,5 +39,6 @@ def doc_view_notificaction(request):
 
 @login_required(login_url='login_view')
 def view_patient_data(request):
-    data = PatientData.objects.all()
+    doc = doctor.objects.get(user=request.user)
+    data = PatientData.objects.filter(Doc_name=doc)
     return render(request, 'doctor/view_patient_data.html', {'data': data})

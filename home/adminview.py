@@ -45,19 +45,19 @@ def doc_view(request):
 
 
 @login_required(login_url='login_view')
-def doc_delete(request, id):
-    data = doctor.objects.get(id=id)
+def doc_delete(request, pk):
+    data = doctor.objects.get(pk=pk)
     data.delete()
 
     return redirect('doc_view')
 
 
 @login_required(login_url='login_view')
-def update(request, id):
-    data = doctor.objects.get(id=id)
+def update(request, pk):
+    data = doctor.objects.get(pk=pk)
     form = doctorlogin(instance=data)
     if request.method == 'POST':
-        form = doctorlogin(request.POST, instance=data)
+        form = doctorlogin(request.POST, request.FILES, instance=data)
         if form.is_valid():
             form.save()
             return redirect('doc_view')

@@ -3,13 +3,15 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 from home.forms import loginform, doctorlogin, patientlogin
+from home.models import department, doctor
 
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'index.html')
+    data=doctor.objects.all()
+    return render(request, 'index.html',{'data':data})
 
 
 def doctor_registration(request):
@@ -80,13 +82,6 @@ def login_view(request):
             messages.info(request, 'invalid Credentials')
     return render(request, 'login.html')
 
-
-def department(request):
-    return render(request, 'login.html')
-
-
-def contact(request):
-    return render(request, 'login.html')
 
 
 def logout_view(request):

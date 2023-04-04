@@ -78,6 +78,7 @@ class Appointment(models.Model):
 
 class PatientData(models.Model):
     user = models.ForeignKey(Login, on_delete=models.CASCADE)
+    Doc_name = models.ForeignKey(doctor, on_delete=models.DO_NOTHING)
     Title = models.CharField(max_length=100)
     P_data = models.FileField(upload_to='data/')
 

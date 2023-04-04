@@ -1,7 +1,7 @@
 {% extends 'patient/patientbase.html' %}
 {%load crispy_forms_tags %}
 {% block content %}
-<h1 class="text-center">Add your feedbacks</h1><br><br>
+<h1 class="text-center" style="font-family: 'Alkatra', cursive;">Add your feedbacks</h1><br><br>
 <form method="post" class="text-center" >
     {% csrf_token %}
     {{form|crispy}}

@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>{% block title %}Dashboard ACELAB{% endblock title %}</title>
+  <title>Dashboard ACELAB</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -16,6 +16,9 @@
   <link href=" {% static 'set3/assets/img/apple-touch-icon.png' %} " rel="apple-touch-icon">
 
   <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -395,7 +398,7 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href=" {% static 'pages-login.html' %} ">
+        <a class="nav-link collapsed" href=" {% url 'logout_view' %} ">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Logout</span>
         </a>
@@ -411,7 +414,7 @@
       <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href=" {% static 'index.html' %} ">Home</a></li>
+          <li class="breadcrumb-item"><a href=" {% url 'admindashboard' %} ">Home</a></li>
           <li class="breadcrumb-item active">Dashboard</li>
         </ol>
       </nav>
@@ -430,7 +433,7 @@
         <!-- Right side columns -->
         <div class="col-lg-12 col-md-12 col-sm-12">
             {% block content %}
-            <h1 class="text-center">Welcome To Admin Dashboard</h1>
+            <h1 class="text-center" style="font-family: 'Alkatra', cursive;">Welcome To Admin Dashboard</h1>
             {% endblock%}
 
         </div><!-- End Right side columns -->

@@ -96,4 +96,4 @@ class ScheduleForm(forms.ModelForm):
 class PatientDataForm(forms.ModelForm):
     class Meta:
         model = PatientData
-        fields = ('Title','P_data',)
+        fields = ('Title','Doc_name','P_data',)
