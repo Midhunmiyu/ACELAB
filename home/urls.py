@@ -49,6 +49,8 @@ urlpatterns = [
     path('doc_view_patients', doctorviews.doc_view_patients, name='doc_view_patients'),
     path('doc_view_notificaction', doctorviews.doc_view_notificaction, name='doc_view_notificaction'),
     path('view_patient_data', doctorviews.view_patient_data, name='view_patient_data'),
+    path('doc_view_doc', doctorviews.doc_view_doc, name='doc_view_doc'),
+    path('doc_view_department', doctorviews.doc_view_department, name='doc_view_department'),
 
 
     # patient urls

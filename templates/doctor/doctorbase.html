@@ -224,7 +224,12 @@
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-
+      <li class="nav-item">
+        <a class="nav-link collapsed" href=" {% url 'doc_view_department' %} ">
+          <i class="bi bi-menu-button-wide"></i>
+          <span>View Departments</span>
+        </a>
+      </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href=" {% url 'doc_view_patients' %} ">
           <i class="bi bi-people-fill"></i>
@@ -285,7 +290,7 @@
         <!-- Right side columns -->
         <div class="col-lg-12 col-md-12 col-sm-12">
            {% block content %}
-            <h1 style="text-align:center;font-family: 'Alkatra', cursive;">Welcome To Doctors Dashboard</h1>
+            <h1 style="text-align:center;font-family: 'Alkatra', cursive;">Welcome To Doctors Dashboard</h1><br><br>
            {% endblock%}
 
         </div><!-- End Right side columns -->

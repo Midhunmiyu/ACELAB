@@ -1,6 +1,5 @@
-{% extends 'patient/patientbase.html' %}
-{%load crispy_forms_tags %}
-
+{% extends 'doctor/doctorbase.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 <h1 class="text-center" style="font-family: 'Alkatra', cursive;">Our Departments</h1><hr><br>
 <div class="container text-center">
@@ -14,6 +13,5 @@
     </div>
   </div>
   {% endfor %}
-</div>{% endblock %}
-
-
+</div>
+{% endblock %}

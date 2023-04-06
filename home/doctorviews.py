@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from home.forms import doctorlogin
-from home.models import doctor, Feedback, Appointment, patient, DoctorNotification, PatientData
+from home.models import doctor, Feedback, Appointment, patient, DoctorNotification, PatientData, department
 
 
 @login_required(login_url='login_view')
@@ -42,3 +42,14 @@ def view_patient_data(request):
     doc = doctor.objects.get(user=request.user)
     data = PatientData.objects.filter(Doc_name=doc)
     return render(request, 'doctor/view_patient_data.html', {'data': data})
+
+
+@login_required(login_url='login_view')
+def doc_view_doc(request):
+    data = doctor.objects.all()
+    return render(request, 'doctor/Viewdoctors.html', {'data': data})
+
+@login_required(login_url='login_view')
+def doc_view_department(request):
+    data=department.objects.all()
+    return render(request,'doctor/viewdepartments.html',{'data':data})
