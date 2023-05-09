@@ -60,7 +60,6 @@ def login_view(request):
         username = request.POST.get('uname')
         password = request.POST.get('pass')
         user = authenticate(request, username=username, password=password)
-
         if user is not None:
 
             if user.is_staff:

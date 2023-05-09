@@ -34,7 +34,6 @@ def view_department(request):
 def delete(request, id):
     data = department.objects.get(id=id)
     data.delete()
-
     return redirect('view_department')
 
 

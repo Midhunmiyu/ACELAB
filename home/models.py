@@ -1,3 +1,4 @@
+from django.core.validators import MinLengthValidator
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -33,7 +34,7 @@ class doctor(models.Model):
 class patient(models.Model):
     user = models.ForeignKey(Login, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    aadhar_number = models.CharField(max_length=50)
+    aadhar_number = models.CharField(max_length=12,unique=True, validators=[MinLengthValidator(12)])
     email = models.EmailField()
 
     def __str__(self):
